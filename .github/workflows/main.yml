@@ -1,14 +1,11 @@
-name: CI/CD Pipeline
-
 on:
   push:
-    branches-ignore:
-      - frontend-main
     branches:
       - frontend-test
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     
     steps:
@@ -19,6 +16,7 @@ jobs:
         run: echo "Building the project..."
         
   test:
+    name: Test
     runs-on: ubuntu-latest
     
     steps:
@@ -29,6 +27,7 @@ jobs:
         run: echo "Running tests..."
         
   deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     
     steps:
@@ -39,6 +38,7 @@ jobs:
         run: echo "Deploying the artifacts..."
         
   notify:
+    name: Notify
     runs-on: ubuntu-latest
     
     if: always()  # Always run this job, regardless of previous jobs' status
