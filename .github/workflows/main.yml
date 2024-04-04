@@ -1,9 +1,12 @@
 name: CI/CD Pipeline
 
 on:
-  push:
-    branches-ignore:
-      - main
+    push:
+      branches-ignore:
+        - frontend-main
+      branches:
+        - frontend-test
+  
 
 jobs:
   build:
