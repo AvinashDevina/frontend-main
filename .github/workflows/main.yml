@@ -1,0 +1,53 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches-ignore:
+      - frontend-main
+    branches:
+      - frontend-test
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Build
+        run: echo "Building the project..."
+        
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Run tests
+        run: echo "Running tests..."
+        
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Deploy
+        run: echo "Deploying the artifacts..."
+        
+  notify:
+    runs-on: ubuntu-latest
+    
+    if: always()  # Always run this job, regardless of previous jobs' status
+    
+    steps:
+      - name: Notify on success
+        if: ${{ success() }}
+        run: echo "Pipeline succeeded! Sending notification..."
+        
+      - name: Notify on failure
+        if: ${{ failure() }}
+        run: echo "Pipeline failed! Sending notification..."
