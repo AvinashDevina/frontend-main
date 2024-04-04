@@ -1,3 +1,4 @@
+name: frontent-test
 on:
   push:
     branches:
